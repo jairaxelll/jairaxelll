@@ -1,0 +1,57 @@
+package reto4;
+
+public class Reto4 {
+
+    public static void main(String[] args) {     
+
+        int [][] datos = {
+             
+                  {111,483,471,427}, 
+                  {192,500,355,158}, 
+                  {289, 470, 474, 160}, 
+                  {415, 114, 161 , 308}
+                  } ;
+        
+        int []total = {0,0,0,0};
+
+        //     System.out.println(trimestre(datos));
+        
+             System.out.println("El trimestre que más se vende por cada sabor de café frio que tiene en existencia: ");
+        //2-2-3-1     
+                //variable que representa el tamaño de las lineas     
+        int l = datos.length;
+        //variable que representa el tamaño de las columnas
+        int c = datos[0].length;
+        int v = datos [0][0];
+        int pro = 0;
+        int y = 0;
+        int z = 0;
+        int variable = 0;
+        for(int i = 0; i < l; i++){  //filas    
+
+            for(int j = 0; j < c; j++){   // columnas
+                 total[j] = total[j] + datos[i][j];     
+                    if(datos[i][j] > v){
+                    v = datos[i][j];
+                    pro = j;
+                    }
+                    
+            } 
+              
+        System.out.println(pro + 1);
+        
+        v = 0;
+        }
+                   
+         System.out.println("El trimestre que más producto vende en general, sin contar el chocolate es: ");        
+        for(z = 0; z < 4; z++){
+            if (total[z] > y){
+                y = total[z];
+                variable = z;
+            }
+                   
+            } 
+               System.out.println(variable + 1); 
+               System.out.println("Este es un codigo hecho por jair axel");
+        }
+}
