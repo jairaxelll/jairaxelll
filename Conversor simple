@@ -1,0 +1,200 @@
+package tarea3;
+import java.io.*;
+import java.util.Scanner;
+
+public class Tarea3 {
+
+public static BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
+    
+    public static void main(String[] args) throws IOException {
+    Scanner sc = new Scanner(System.in);
+    //Declaracion de variables
+    String conv, respuesta, n = "n", s = "s";
+    int numbas, sino = 2;
+    
+    //Display de menu
+    System.out.println("**Programa de Conversiones**");
+    System.out.println("a. Convertir de decimal al binario");
+    System.out.println("b. Convertir de decimal a octal");
+    System.out.println("c. Convertir de decimal a hexadecimal");
+    System.out.println("d. Convertir de binario a decimal");
+    System.out.println("e. Convertir de octal a decimal");
+    System.out.println("f. Convertir de hexadecimal a decimal");
+    
+
+    while(sino<3){
+        
+    //Pedir tipo de conversion
+    System.out.println("Tipo de conversion?");
+    conv = sc.nextLine();
+    
+
+    
+    switch(conv){
+        case "a" -> {
+            //Pedir numero
+            System.out.println("Numero a convertir?");
+            numbas = Integer.parseInt(entrada.readLine());
+            //llamar objeto
+            System.out.println(decibin(numbas));
+            System.out.println("Deseas hacer otra conversion? s/n");
+            respuesta = sc.nextLine();
+            //romper ciclo
+            if(respuesta.equals(n)){
+                System.out.println("Fin del programa");
+                sino = 4;
+            }
+            }
+                        
+         case "b" -> {
+            System.out.println("Numero a convertir?");
+            numbas = Integer.parseInt(entrada.readLine());             
+             System.out.println(decioct(numbas));
+             System.out.println("Deseas hacer otra conversion? s/n");
+             respuesta = sc.nextLine();
+             if(respuesta.equals(n)){
+                 System.out.println("Fin del programa");
+                 sino = 4;
+             }
+            }
+                  
+    
+         case "c" -> {
+            System.out.println("Numero a convertir?");
+            numbas = Integer.parseInt(entrada.readLine());
+             System.out.println(decihexa(numbas));
+             System.out.println("Deseas hacer otra conversion? s/n");
+             respuesta = sc.nextLine();
+             if(respuesta.equals(n)){
+                 System.out.println("Fin del programa");
+                 sino = 4;
+             }
+            }
+
+         case "d" -> {
+            System.out.println("Numero a convertir?");
+            numbas = Integer.parseInt(entrada.readLine());
+             System.out.println(bindeci(numbas));
+             System.out.println("Deseas hacer otra conversion? s/n");
+             respuesta = sc.nextLine();
+             if(respuesta.equals(n)){
+                 System.out.println("Fin del programa");
+                 sino = 4;
+             }
+            }
+            
+         case "e" -> {
+            System.out.println("Numero a convertir?");
+            Long octa;
+            octa =  Long.parseLong(entrada.readLine());
+            System.out.println(octdeci(octa));
+             System.out.println("Deseas hacer otra conversion? s/n");
+             respuesta = sc.nextLine();
+             if(respuesta.equals(n)){
+                 System.out.println("Fin del programa");
+                 sino = 4;
+             }
+            }
+            
+         case "f" -> {
+             System.out.println("Numero a convertir?");
+             String hexa;
+             hexa = sc.nextLine();
+             System.out.println(hexadeci(hexa));
+             System.out.println("Deseas hacer otra conversion? s/n");
+             respuesta = sc.nextLine();
+             if(respuesta.equals(n)){
+                 System.out.println("Fin del programa");
+                 sino = 4;
+             }
+            }
+    }   
+    }
+    System.out.println("Este codigo fue hecho por Jair Martinez");
+    }
+
+    
+
+public static long decibin (int num) 
+{
+int cociente;
+int aux = 1;
+long resultado = 0;
+  do {
+     cociente=num%2; 
+     num/=2; 
+     resultado += cociente*aux; 
+     aux *= 10; 
+    } while (num!=0);
+  return resultado;
+}
+
+public static long decioct (int num) 
+{
+int division = num;
+int cociente;
+int aux = 1;
+long resultado = 0;
+  do {
+     cociente=division%8; 
+     division=division/8; 
+     resultado += cociente*aux; 
+     aux *= 10; 
+    } while (division!=0);
+  return resultado;
+}
+
+//Este lo busque en youtube
+public static String decihexa(int decimal) {
+    String hexadecimal = "";
+    String caracteresHexadecimales = "0123456789abcdef";
+    while (decimal > 0) {
+        int residuo = decimal % 16;
+        hexadecimal = caracteresHexadecimales.charAt(residuo) + hexadecimal; 
+        decimal /= 16;
+    }
+    return hexadecimal;
+}
+
+
+
+public static double bindeci (long num) {
+int potencia = 0;
+long digito;
+double numero = 0;
+  while(num != 0)
+  {
+      digito=num%10; //1
+      numero += Math.pow(2, potencia)* digito; 
+      num /= 10;
+    potencia ++;
+
+  }
+ return numero;
+}
+
+  
+public static double octdeci (long num) {
+int potencia = 0;
+long digito;
+double numero = 0;
+  while(num != 0)
+  {
+      digito=num%10; //1
+      numero += Math.pow(8, potencia)* digito; 
+      num /= 10;
+    potencia ++;
+
+  }
+ return numero;
+}
+  
+public static int hexadeci(String decimal) {
+
+   int num = Integer.parseInt(decimal,16);
+    
+    return num;
+}
+
+
+}
