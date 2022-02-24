@@ -1,0 +1,79 @@
+package reto5;
+import java.io.*;
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Random;
+
+public class Reto5 {
+    
+public static BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
+
+    public static void main(String[] args) throws IOException {
+    Scanner sc = new Scanner(System.in);        
+
+
+int menu = 1;
+int aleatorio;
+
+String palabras[][] = {{"pato", "gata", "pepe"},
+                       {"palabras", "abejones", "telefono"},
+                       {"ajedrecistas","acuarelistas","descalabazar"}};
+
+
+
+
+
+  do{
+    aleatorio = (int)(Math.random()*3+0);
+    System.out.println("Introduce el nivel");
+    System.out.println("1)Facil");
+    System.out.println("2)Intermedio");
+    System.out.println("3)Dificil");
+    System.out.println("0)Cerrar el juego");
+    menu = Integer.parseInt(entrada.readLine());
+
+    
+       System.out.println(juego(palabras[menu-1][aleatorio]));
+       System.out.println("Quieres continuar el juego? s/n");
+       String sino = sc.nextLine();
+       if("S".equals(sino) || "s".equals(sino)){
+           menu = 1;
+           }
+       else { if("N".equals(sino)||"n".equals(sino)){
+           menu = 0;
+           } else {
+           System.out.println("Respuesta no valida, el programa se cerrara.");
+           menu = 0;     
+    }
+    }
+}while(menu > 0 && menu < 4);
+  System.out.println("Este fue un codigo en su mayoria por Jair Axel");
+    }   
+  
+
+
+public static String juego(String palabras) throws IOException{
+    boolean control = true;
+          char letra = 'x';
+        char [] palabra_secreta = new char [palabras.length()];
+        Arrays.fill(palabra_secreta, 'X');  
+    do{ 
+    System.out.println("Introduzca una letra");
+        letra = entrada.readLine().charAt(0);
+        control = false; 
+
+    for(int i = 0 ; i < palabras.length(); i++)
+        {
+            if (letra == palabras.charAt(i)) {
+                palabra_secreta[i]=letra;
+            }
+            if(palabra_secreta[i]== 'X') {
+                control = true;
+            }
+              System.out.print(palabra_secreta[i]);
+        }
+    System.out.println(" ");
+    }while(control == true);
+    return "Ganaste!";
+}
+}
